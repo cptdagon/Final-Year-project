@@ -72,7 +72,6 @@ void print_cell_info(vm_cell_info_struct* cell_ptr) {
 }
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
   Serial1.begin(9600);
   //pinMode(2, INPUT);
@@ -87,7 +86,10 @@ void setup() {
   //digitalWrite(3, LOW);
   Serial.println("Ready"); 
 }
-
+/*
+Check for a new SMS Message
+if new message, send contents to myRio by UART
+*/
 void loop() {
   if(LSMS.available())             // Check if there is new SMS
   { 
@@ -110,7 +112,11 @@ void loop() {
     LSMS.flush();                  // delete message
   } 
   delay(loop_delay_ms);
-  //if(digitalRead(2) == HIGH)
+  //if(digitalRead(2) == HIGH
+/*
+Check UART for incoming data
+if data - send SMS
+*/
   if(Serial1.available())//
   {
     //int z = 0;
@@ -151,6 +157,12 @@ void loop() {
     //digitalWrite(3, LOW);
     delay(loop_delay_ms);
   }
+  
+/*
+Get Current Signal Strength and Cell Info
+print result to PC Console Window and Send result to myRio by UART
+*/
+  
   delay(loop_delay_ms);
   vm_cell_info_struct *current_cell_ptr;
   LTask.remoteCall(&get_current_cell_info, (void *)&current_cell_ptr);
