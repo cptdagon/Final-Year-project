@@ -116,7 +116,7 @@ void loop() {
     //int z = 0;
     Serial.println("Reading UART");
     //digitalWrite(3, HIGH);
-    LSMS.beginSMS("07557115839");
+    LSMS.beginSMS("");
     //while(!Serial1.available())
     //{
       //delay(1000);
